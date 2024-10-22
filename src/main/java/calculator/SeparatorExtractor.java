@@ -36,12 +36,12 @@ public class SeparatorExtractor {
 
     public static class ExtractResult {
 
-        private String expression;
-        private Optional<Character> separator;
+        private final String expression;
+        private final Character separator;
 
         private ExtractResult(String expression, Character separator) {
             this.expression = expression;
-            this.separator = Optional.ofNullable(separator);
+            this.separator = separator;
         }
 
         public String getExpression() {
@@ -49,7 +49,7 @@ public class SeparatorExtractor {
         }
 
         public Optional<Character> getSeparator() {
-            return separator;
+            return Optional.ofNullable(separator);
         }
     }
 }
