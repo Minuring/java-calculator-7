@@ -1,5 +1,7 @@
 package calculator;
 
+import static calculator.NumberUtils.isNumeric;
+
 import java.util.Optional;
 
 public class SeparatorExtractor {
@@ -23,15 +25,6 @@ public class SeparatorExtractor {
             return;
         }
         throw new IllegalArgumentException("커스텀 구분자의 형식이 맞지 않습니다 : " + exp);
-    }
-
-    private boolean isNumeric(char c) {
-        try {
-            Double.parseDouble(String.valueOf(c));
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     public static class ExtractResult {
