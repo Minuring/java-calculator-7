@@ -4,8 +4,8 @@ public class Calculator {
 
     private static final String DEFAULT_SEPARATORS = ",:";
 
-    private String exp;
-    private String regex;
+    private final String exp;
+    private final String regex;
 
     public Calculator(String expression) {
         this.regex = "[" + DEFAULT_SEPARATORS + "]";
@@ -13,8 +13,8 @@ public class Calculator {
     }
 
     public Calculator(String expression, char customSeparator) {
-        this(expression);
         this.regex = "[" + DEFAULT_SEPARATORS + customSeparator + "]";
+        this.exp = expression;
     }
 
     public int calculate() {
