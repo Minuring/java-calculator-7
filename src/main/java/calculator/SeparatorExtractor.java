@@ -19,19 +19,10 @@ public class SeparatorExtractor {
     }
 
     private void validateCustomSeparator(String exp) {
-        if (exp.length() >= 5 && exp.indexOf("\\n") == 3 && !isNumeric(exp.charAt(2))) {
+        if (exp.length() >= 5 && exp.indexOf("\\n") == 3 && !Character.isDigit(exp.charAt(2))) {
             return;
         }
         throw new IllegalArgumentException("커스텀 구분자의 형식이 맞지 않습니다 : " + exp);
-    }
-
-    private boolean isNumeric(char c) {
-        try {
-            Double.parseDouble(String.valueOf(c));
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     public static class ExtractResult {
