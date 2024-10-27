@@ -1,7 +1,5 @@
 package calculator;
 
-import static calculator.NumberUtils.isNumeric;
-
 import java.util.Optional;
 
 public class SeparatorExtractor {
