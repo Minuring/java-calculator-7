@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class SeparatorExtractor {
 
     private static final String DEFAULT_SEPARATORS = ",:";
-    private static final Pattern CUSTOM_SEPARATOR_PATTERN = Pattern.compile("//(\\D+)\n");
+    private static final Pattern CUSTOM_SEPARATOR_PATTERN = Pattern.compile("//(\\D+)\\\\n");
     private static final int CUSTOM_SEPARATOR_INDEX = 1;
 
     public static Pattern extractSeparatorsPattern(String expression) {

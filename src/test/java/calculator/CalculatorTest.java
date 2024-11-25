@@ -20,7 +20,7 @@ public class CalculatorTest {
 
     @Test
     void 정수_실수_혼합_테스트() {
-        double result = Calculator.sum("//@#\n1,2.2:3.3@4#5.5");
+        double result = Calculator.sum("//@#\\n1,2.2:3.3@4#5.5");
         assertThat(result).isEqualTo(16);
     }
 }
