@@ -1,24 +1,31 @@
 package calculator;
 
+import static calculator.SeparatorExtractor.extractSeparatorsPattern;
+import static calculator.SeparatorExtractor.removeCustomSeparatorRegisterPrefix;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class ExpressionParser {
 
     private static final String REGEX_BLANK_FILTER = "[ \\s\\n\\t\b]?";
-    private static final String REGEX_DEFAULT_SEPARATOR = "[,:]";
 
     public static List<Number> parse(String rawExpression) {
         validateBlankNotExists(rawExpression);
-        return extractNumbers(rawExpression);
+
+        Pattern separatorsPattern = extractSeparatorsPattern(rawExpression);
+        String expressionExcludedCustomSeparator = removeCustomSeparatorRegisterPrefix(rawExpression);
+
+        String[] splitExpression = separatorsPattern.split(expressionExcludedCustomSeparator);
+        return extractNumbers(splitExpression);
     }
 
-    private static List<Number> extractNumbers(String rawExpression) {
-        String[] rawNumbers = rawExpression.split(REGEX_DEFAULT_SEPARATOR);
+    private static List<Number> extractNumbers(String[] splitExpression) {
 
         List<Number> numbers = new ArrayList<>();
-        Arrays.stream(rawNumbers)
+        Arrays.stream(splitExpression)
             .map(Double::parseDouble)
             .peek(ExpressionParser::validateNegativeNumberNotExists)
             .forEach(numbers::add);
